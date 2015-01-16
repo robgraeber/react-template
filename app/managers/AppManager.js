@@ -1,9 +1,9 @@
-var ApiManager = require('./ApiManager'),
-    createManager = require('../utils/createManager');
+var ApiHelper = require('../utils/ApiHelper'),
+    createManager = require('react-toolkit/utils/createManager');
 
 var Manager = module.exports = createManager({
     initialize: function() {
-        ApiManager.getFoodEvents('SF').then(function (foodEvents) {
+        ApiHelper.getFoodEvents('SF').then(function (foodEvents) {
             this.set('foodEvents', foodEvents);
         }.bind(this));
     }

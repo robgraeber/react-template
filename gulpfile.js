@@ -13,8 +13,8 @@ var gulp = require('gulp'),
     es = require('event-stream'),
     merge = require('event-stream').concat;
     
-var publicDir       = './public',
-    publicAssetsDir = './public/assets';
+var publicDir = './public',
+    publicImgDir = './public/img';
 
 var webpackAppJS = function(minifyMe) {
     return gulp.src('./app/Router.jsx')
@@ -45,12 +45,9 @@ var concatCSS = function(minifyMe) {
 };
 var copyStuff = function(minifyMe) {
     return gulp.src([
-        './assets/**/*',
         './app/index.html',
-        '!./app/**/*.{js,jsx}', 
-        '!./app/**/*.styl', 
-        '!./app/lib/**/*'
-    ])
+        './app/img/**/*',
+    ], { base: './app' })
     .pipe(filterEmptyDirs())
     .pipe(gulp.dest(publicDir));
 };
@@ -68,10 +65,10 @@ var filterEmptyDirs = function() {
 
 var minifyImages = function() {
     return gulp.src([
-        publicAssetsDir+'/**/*',
+        publicImgDir+'/**/*',
     ])
     .pipe(imageMin())
-    .pipe(gulp.dest(publicAssetsDir));
+    .pipe(gulp.dest(publicImgDir));
 };
 
 //opens up browserSync url
@@ -110,7 +107,7 @@ gulp.task('default', ['clean'], function() {
     return merge(copyStuff(), concatCSS(), webpackAppJS())
     .on('end', function() {
         syncMe();
-    });;
+    });
 });
 
 //production build task

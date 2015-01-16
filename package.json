@@ -1,5 +1,5 @@
 {
-  "name": "react-boilerplate",
+  "name": "react-template",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "promise": "^6.0.1",
     "react": "^0.12.1",
     "react-router": "^0.11.6",
+    "react-toolkit": "^1.0.0",
     "request": "^2.51.0",
     "superagent": "^0.21.0",
     "superagent-promise": "^0.2.0",

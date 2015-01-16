@@ -1,11 +1,11 @@
 var React = require('react'),
     AppManager = require('../managers/AppManager'),
-    ChangeListener = require('../mixins/ChangeListener');
+    ChangeListener = require('react-toolkit/mixins/ChangeListener');
 
 var Component = module.exports = React.createClass({
     mixins: [ChangeListener],
     statics: {
-        changeListeners: [AppManager],
+        changeEmitters: [AppManager],
     },
     getInitialState: function() {
         return {
