@@ -1,20 +1,17 @@
-//Entry point for the app
-require('./_effing/globals');
-
 var React = require('react'),
     Router = require('react-router'),
-    HomeView = require2('views/HomeView'),
-    AboutView = require2('views/AboutView'),
-    LayoutView = require2('views/LayoutView'),
+    Home = require('./views/Home'),
+    About = require('./views/About'),
+    Layout = require('./views/Layout'),
     Route = Router.Route,
     NotFound = Router.NotFoundRoute;
 
 
 var routes = (
-    <Route path="/" handler={LayoutView}>
-        <Route name="aboutView" path="about/:id/?" handler={AboutView} />
-        <Route name="homeView" path=":id?/?" handler={HomeView} />
-        <NotFound handler={HomeView} />
+    <Route path="/" handler={Layout}>
+        <Route name="about" path="about/:id/?" handler={About} />
+        <Route name="home" path=":id?/?" handler={Home} />
+        <NotFound handler={Home} />
     </Route>
 );
 

@@ -11,9 +11,8 @@ var gulp = require('gulp'),
     cssMin = require('gulp-minify-css'),
     nib = require('nib'),
     es = require('event-stream'),
-    merge = require('event-stream').concat,
-    IgnorePlugin = require('webpack/lib/IgnorePlugin');
-
+    merge = require('event-stream').concat;
+    
 var publicDir       = './public',
     publicAssetsDir = './public/assets';
 
@@ -28,8 +27,7 @@ var webpackAppJS = function(minifyMe) {
             resolve: {
                 // you can now require('file') instead of require('file.jsx')
                 extensions: ['', '.js', '.jsx'] 
-            },
-            plugins: [new IgnorePlugin(/\.(html|styl)/)]
+            }
         }))
         .pipe(concat('app.js'))
         .pipe(gulpif(minifyMe, uglify()))

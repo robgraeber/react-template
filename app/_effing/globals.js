@@ -1,1 +1,0 @@
-global.require2 = require('./utils/require2');

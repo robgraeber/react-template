@@ -12,7 +12,7 @@ var openingTag = '<body>',
     indexBottom = indexHtml.substring(indexHtml.indexOf(closingTag));
 
 //production mode only -- renders the app to html to decrease load time
-var renderApp = function (req, res, next) {
+var renderApp = function (req, res) {
     if(process.env.NODE_ENV === 'production'){
         var urlPath = url.parse(req.url).pathname;
 
@@ -25,6 +25,5 @@ var renderApp = function (req, res, next) {
     } else {
         res.send(indexHtml);
     }
-    
 };
 module.exports = renderApp;

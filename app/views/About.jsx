@@ -1,27 +1,22 @@
 var React = require('react'),
-    AppStore = require2('stores/AppStore'),
-    ApiService = require2('services/ApiService'),
-    StoreMixin = require2('_effing/mixins/StoreMixin');
+    AppManager = require('../managers/AppManager'),
+    ChangeListener = require('../mixins/ChangeListener');
 
 var Component = module.exports = React.createClass({
-    mixins: [StoreMixin],
+    mixins: [ChangeListener],
     statics: {
-        storeListeners: [AppStore],
+        changeListeners: [AppManager],
     },
     getInitialState: function() {
         return {
-            foodEvents: AppStore.get('foodEvents') || []
+            foodEvents: AppManager.get('foodEvents') || []
         };
     },
     componentDidMount: function() {
-        if (!AppStore.get('foodEvents'))
-            ApiService.getFoodEvents('SF').then(function (foodEvents) {
-                AppStore.set('foodEvents', foodEvents);
-            });
     },
     _onChange: function() {
         this.setState({
-            foodEvents: AppStore.get('foodEvents') || []
+            foodEvents: AppManager.get('foodEvents') || []
         });
     },
     render: function() {  

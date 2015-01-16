@@ -8,8 +8,8 @@ var Component = module.exports = React.createClass({
         return (
             <div id="container">
                 <h1>React Boilerplate!</h1>
-                <Link to="homeView">Home</Link>
-                <Link to="aboutView" params={{id: 2}}>About</Link>
+                <Link to="home">Home</Link>
+                <Link to="about" params={{id: 2}}>About</Link>
                 <RouteHandler params={this.props.params} />
             </div>
         );
