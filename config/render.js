@@ -3,11 +3,11 @@ var nodeJsx = require('node-jsx').install({extension: '.jsx', addDocblock: true}
     url = require('url'),
     React = require('react'),
     Router = require('react-router'),
-    routes = require('./app/Router');
+    routes = require('../app/Router');
     
 var openingTag = '<body>',
     closingTag = '</body>',
-    indexHtml = fs.readFileSync(__dirname+'/public/index.html').toString('utf8'),
+    indexHtml = fs.readFileSync(__dirname+'/../public/index.html').toString('utf8'),
     indexTop = indexHtml.substring(0, indexHtml.indexOf(openingTag)+openingTag.length),
     indexBottom = indexHtml.substring(indexHtml.indexOf(closingTag));
 

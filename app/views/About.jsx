@@ -1,18 +1,16 @@
 var React = require('react'),
-    AppManager = require('../managers/AppManager'),
+    AppManager = require('../models/AppManager'),
     ChangeListener = require('react-toolkit/mixins/ChangeListener');
 
-var Component = module.exports = React.createClass({
+var Component = React.createClass({
     mixins: [ChangeListener],
     statics: {
-        changeEmitters: [AppManager],
+        changeEmitters: [AppManager]
     },
     getInitialState: function() {
         return {
             foodEvents: AppManager.get('foodEvents') || []
         };
-    },
-    componentDidMount: function() {
     },
     _onChange: function() {
         this.setState({
@@ -29,3 +27,5 @@ var Component = module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Component;

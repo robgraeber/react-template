@@ -18,29 +18,12 @@ if (cluster.isMaster) {
         cluster.fork();
     });
 } else {
-    var path = require('path'),
-        render = require('./render'),
-        express = require('express'),
-        request = require('request'),
-        compress = require('compression');
+    var express = require('express'),
+        config = require('./config/config'),
+        app = config(express());
 
     console.log('Worker ' + cluster.worker.id + ' running!');
 
-    var app = express();
-
-    app.use(compress());
-    app.get('/', render);
-    app.get(['/api', '/api*'], function(req, res) {
-        var apiUrl = 'http://www.foodbot.io/api';
-        var relativeUrl = req.url.replace(/^\/api/, '');
-        var url = apiUrl + relativeUrl;
-        request(url).pipe(res);
-    });
-    app.use(express.static(path.join(__dirname, './public')));
-
-    app.get('*', render);
-
-    app.set('port', process.env.PORT || 8000);
     app.listen(app.get('port'), function() {
         console.log('Express server listening on port ' + app.get('port'));
     });
